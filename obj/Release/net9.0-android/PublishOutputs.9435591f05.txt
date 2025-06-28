@@ -1,0 +1,4 @@
+C:\Users\Bhbored\Documents\c#\SimpleInventory\SimpleInventory\bin\Release\net9.0-android\publish\com.companyname.simpleinventory-Signed.aab
+C:\Users\Bhbored\Documents\c#\SimpleInventory\SimpleInventory\bin\Release\net9.0-android\publish\com.companyname.simpleinventory.aab
+C:\Users\Bhbored\Documents\c#\SimpleInventory\SimpleInventory\bin\Release\net9.0-android\publish\com.companyname.simpleinventory-Signed.apk
+C:\Users\Bhbored\Documents\c#\SimpleInventory\SimpleInventory\bin\Release\net9.0-android\publish\_Microsoft.Android.Resource.Designer.dll

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SimpleInventory.MVVM.View.InventoryView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions="60, 40, 130, 150, *, 70">
+        <!--  Header  -->
+        <Grid Grid.Row="0" StyleClass="HeaderContainer">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image
+                HeightRequest="24"
+                Source="backbutton.png"
+                VerticalOptions="Center"
+                WidthRequest="24" />
+            <Label
+                Grid.Column="1"
+                StyleClass="HeaderTitle"
+                Text="Inventory"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <!--  Header  -->
+        <SearchBar Grid.Row="1" />
+        <!--  List of Products  -->
+        <CollectionView Grid.Row="2" Grid.RowSpan="3" />
+        <!--  Floating Action Button  -->
+        <Grid Grid.Row="4">
+            <Border
+                Margin="0,0,24,40"
+                Padding="18,10"
+                BackgroundColor="{StaticResource PrimaryGreen}"
+                HeightRequest="50"
+                HorizontalOptions="End"
+                StrokeShape="RoundRectangle 24"
+                VerticalOptions="End">
+                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image
+                        HeightRequest="20"
+                        Source="plus.png"
+                        WidthRequest="20" />
+                    <Label
+                        Margin="8,0,0,0"
+                        FontAttributes="Bold"
+                        Text="Add Product"
+                        TextColor="White" />
+                </HorizontalStackLayout>
+            </Border>
+        </Grid>
+        <!--#region ButtomNavBar-->
+        <Grid Grid.Row="5" Background="White">
+            <HorizontalStackLayout
+                Padding="0,0,0,0"
+                HorizontalOptions="Center"
+                Spacing="80"
+                VerticalOptions="Center">
+                <Border BackgroundColor="Transparent" Stroke="Transparent">
+                    <VerticalStackLayout>
+                        <Image Source="inventory.png" class="NavButtonActive" />
+                        <Label StyleClass="NavActiveLabel" Text="Inventory" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border
+                    AutomationId="page1"
+                    BackgroundColor="Transparent"
+                    Stroke="Transparent">
+                    <VerticalStackLayout>
+                        <Image Source="transaction.png" StyleClass="NavButton" />
+                        <Label StyleClass="Navlabel" Text="Transactions" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+                <Border
+                    AutomationId="page2"
+                    BackgroundColor="Transparent"
+                    Stroke="Transparent">
+                    <VerticalStackLayout>
+                        <Image Source="credit.png" class="NavButton" />
+                        <Label StyleClass="Navlabel" Text="On-Tap" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+            </HorizontalStackLayout>
+        </Grid>
+        <!--#endregion-->
+    </Grid>
+</ContentPage>

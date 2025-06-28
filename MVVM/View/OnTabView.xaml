@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<uranium:UraniumContentPage
+    x:Class="SimpleInventory.MVVM.View.OnTabView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SimpleInventory.MVVM.View"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions="*, .07*">
+        <VerticalStackLayout Grid.Row="0" Spacing="0">
+            <!--#region Header, searchBar-->
+            <Grid StyleClass="HeaderContainer">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    HeightRequest="24"
+                    Source="backbutton.png"
+                    VerticalOptions="Center"
+                    WidthRequest="24" />
+                <Label
+                    Grid.Column="1"
+                    StyleClass="HeaderTitle"
+                    Text="On-Tab"
+                    VerticalOptions="Center" />
+            </Grid>
+            <!--  Search Bar  -->
+            <Border Margin="16,10,16,0" StyleClass="SearchBarWrapper">
+                <SearchBar
+                    BackgroundColor="Transparent"
+                    Placeholder="Search items"
+                    PlaceholderColor="{StaticResource PrimaryGreen}" />
+            </Border>
+            <!--#endregion-->
+
+        </VerticalStackLayout>
+        <!--#region ButtomNavBar-->
+        <Grid Grid.Row="1" Background="White">
+            <HorizontalStackLayout
+                Padding="0,0,0,0"
+                HorizontalOptions="Center"
+                Spacing="80"
+                VerticalOptions="Center">
+                <Border
+                    AutomationId="page1"
+                    BackgroundColor="Transparent"
+                    Stroke="Transparent">
+                    <VerticalStackLayout>
+                        <Image Source="inventory.png" class="NavButton" />
+                        <Label StyleClass="Navlabel" Text="Inventory" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+                <Border
+                    AutomationId="page2"
+                    BackgroundColor="Transparent"
+                    Stroke="Transparent">
+                    <VerticalStackLayout>
+                        <Image Source="transaction.png" StyleClass="NavButton" />
+                        <Label StyleClass="Navlabel" Text="Transactions" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+                <Border BackgroundColor="Transparent" Stroke="Transparent">
+                    <VerticalStackLayout>
+                        <Image Source="credit.png" class="NavButtonActive" />
+                        <Label StyleClass="NavActiveLabel" Text="On-Tap" />
+                    </VerticalStackLayout>
+
+                </Border>
+            </HorizontalStackLayout>
+        </Grid>
+        <!--#endregion-->
+
+
+    </Grid>
+</uranium:UraniumContentPage>

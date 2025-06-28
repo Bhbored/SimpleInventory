@@ -1,0 +1,315 @@
+<uranium:UraniumContentPage
+    x:Class="SimpleInventory.MVVM.View.CashView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Converters="clr-namespace:SimpleInventory.Converters"
+    xmlns:local="clr-namespace:SimpleInventory.MVVM.View"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Expander;assembly=Syncfusion.Maui.Expander"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    NavigationPage.HasNavigationBar="False">
+
+    <uranium:UraniumContentPage.Resources>
+        <Converters:ColorConverter x:Key="ColorConverter" />
+        <Converters:AmountSignConverter x:Key="AmountSignConverter" />
+        <Converters:TransactionQuantityConverter x:Key="TransactionQuantityConverter" />
+        <Converters:StockConverter x:Key="StockConverter" />
+    </uranium:UraniumContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, *, 70">
+        <!--  Header  -->
+        <Grid
+            Grid.Row="0"
+            HeightRequest="60"
+            StyleClass="HeaderContainer">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image
+                HeightRequest="24"
+                Source="backbutton.png"
+                VerticalOptions="Center"
+                WidthRequest="24" />
+            <Label
+                Grid.Column="1"
+                StyleClass="HeaderTitle"
+                Text="Cash Register"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <!--  Balance Card  -->
+        <Border
+            Grid.Row="1"
+            HeightRequest="130"
+            StyleClass="BalanceCard">
+            <VerticalStackLayout Spacing="10" VerticalOptions="Center">
+                <Label StyleClass="BalanceTitle" Text="Current Balance" />
+                <Label StyleClass="BalanceAmount" Text="$1,234.56" />
+            </VerticalStackLayout>
+        </Border>
+
+        <!--  Clear Registry Button  -->
+        <HorizontalStackLayout
+            Grid.Row="2"
+            Margin="0,0,16,0"
+            HeightRequest="40"
+            HorizontalOptions="End"
+            VerticalOptions="Center">
+            <Border StyleClass="ClearButton" VerticalOptions="Center">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer />
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout>
+                    <Image
+                        HeightRequest="20"
+                        Source="bin.png"
+                        WidthRequest="20" />
+                    <Label
+                        Margin="8,0,0,0"
+                        StyleClass="ClearButtonLabel"
+                        Text="Clear Registry" />
+                </HorizontalStackLayout>
+            </Border>
+        </HorizontalStackLayout>
+
+        <!--  Date Filters  -->
+        <VerticalStackLayout
+            Grid.Row="3"
+            Margin="0,10,0,0"
+            Spacing="10">
+            <Label
+                Margin="16,0,0,5"
+                FontAttributes="Bold"
+                FontSize="13"
+                StyleClass="FilterChipLabel"
+                Text="FILTER BY PERIOD"
+                TextColor="{StaticResource SecondaryText}"
+                TextTransform="Uppercase" />
+
+            <HorizontalStackLayout Margin="16,0,0,0" Spacing="8">
+                <Border
+                    HeightRequest="36"
+                    StyleClass="FilterChip"
+                    VerticalOptions="Center"
+                    WidthRequest="70">
+                    <Label
+                        HorizontalOptions="Center"
+                        StyleClass="FilterChipLabel"
+                        Text="1 hr"
+                        VerticalOptions="Center" />
+                </Border>
+                <Border
+                    HeightRequest="36"
+                    StyleClass="FilterChip"
+                    VerticalOptions="Center"
+                    WidthRequest="70">
+                    <Label
+                        HorizontalOptions="Center"
+                        StyleClass="FilterChipLabel"
+                        Text="4 hrs"
+                        VerticalOptions="Center" />
+                </Border>
+                <Border
+                    HeightRequest="36"
+                    StyleClass="FilterChip"
+                    VerticalOptions="Center"
+                    WidthRequest="70">
+                    <Label
+                        HorizontalOptions="Center"
+                        StyleClass="FilterChipLabel"
+                        Text="1 day"
+                        VerticalOptions="Center" />
+                </Border>
+                <Border
+                    HeightRequest="36"
+                    StyleClass="FilterChip"
+                    VerticalOptions="Center"
+                    WidthRequest="80">
+                    <Label
+                        HorizontalOptions="Center"
+                        StyleClass="FilterChipLabel"
+                        Text="1 week"
+                        VerticalOptions="Center" />
+                </Border>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Margin="16,0,0,0">
+                <Border
+                    HeightRequest="36"
+                    StyleClass="FilterChip"
+                    WidthRequest="110">
+                    <HorizontalStackLayout>
+                        <Image
+                            HeightRequest="16"
+                            Source="calender.png"
+                            VerticalOptions="Center"
+                            WidthRequest="16" />
+                        <Label
+                            Margin="4,0,0,0"
+                            StyleClass="FilterChipLabel"
+                            Text="Custom"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+            </HorizontalStackLayout>
+            <Label
+                Margin="16,10,0,0"
+                FontAttributes="Bold"
+                FontSize="13"
+                StyleClass="FilterChipLabel"
+                Text="RECENT TRANSACTIONS"
+                TextColor="{StaticResource SecondaryText}"
+                TextTransform="Uppercase" />
+        </VerticalStackLayout>
+
+        <!--  Transactions List  -->
+        <CollectionView
+            Grid.Row="4"
+            Margin="0,5,0,0"
+            ItemsSource="{Binding SortedTransactions}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <syncfusion:SfExpander Margin="0,0,0,10" AnimationDuration="200">
+                        <syncfusion:SfExpander.Header>
+                            <Grid Padding="10" ColumnDefinitions="Auto,*,Auto">
+                                <Label
+                                    x:Name="TransactionType"
+                                    HeightRequest="0"
+                                    IsVisible="False"
+                                    Text="{Binding TransactionType}"
+                                    WidthRequest="0" />
+                                <Image
+                                    HeightRequest="30"
+                                    Source="{Binding Icon}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="30" />
+                                <VerticalStackLayout
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    Spacing="2"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontFamily="Prime"
+                                        FontSize="16"
+                                        Text="{Binding TotalQuantity, Converter={StaticResource TransactionQuantityConverter}, ConverterParameter={x:Reference TransactionType}}"
+                                        TextColor="{StaticResource PrimaryText}" />
+                                    <Label
+                                        FontFamily="Prime"
+                                        FontSize="14"
+                                        Text="{Binding HumanDate}"
+                                        TextColor="Gray" />
+                                </VerticalStackLayout>
+                                <Label
+                                    Grid.Column="2"
+                                    FontAttributes="Bold"
+                                    FontFamily="Prime"
+                                    FontSize="16"
+                                    Text="{Binding TotalAmount, Converter={StaticResource AmountSignConverter}, ConverterParameter={x:Reference TransactionType}}"
+                                    TextColor="{Binding TotalAmount, Converter={StaticResource ColorConverter}, ConverterParameter={x:Reference TransactionType}}"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </syncfusion:SfExpander.Header>
+                        <syncfusion:SfExpander.Content>
+                            <CollectionView ItemsSource="{Binding TransactionItems}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="0,5" ColumnDefinitions=".7*,.3*">
+                                            <HorizontalStackLayout Grid.Column="0">
+                                                <Label
+                                                    Margin="50,0,0,0"
+                                                    FontSize="16"
+                                                    StyleClass="FilterChipLabel"
+                                                    Text="{Binding Name}" />
+                                                <Label
+                                                    Margin="10,0,0,0"
+                                                    FontSize="16"
+                                                    StyleClass="FilterChipLabel"
+                                                    Text="{Binding Stock, Converter={StaticResource StockConverter}}" />
+                                            </HorizontalStackLayout>
+                                            <Label
+                                                Grid.Column="1"
+                                                Margin="0,0,50,0"
+                                                FontSize="15"
+                                                HorizontalOptions="End"
+                                                StyleClass="FilterChipLabel"
+                                                Text="{Binding Price, StringFormat='{0:C}'}"
+                                                TextColor="{StaticResource SecondaryText}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </syncfusion:SfExpander.Content>
+                    </syncfusion:SfExpander>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!--  Floating Action Button  -->
+        <Grid Grid.Row="4">
+            <Border
+                Margin="0,0,24,60"
+                Padding="18,10"
+                BackgroundColor="{StaticResource PrimaryGreen}"
+                HeightRequest="50"
+                HorizontalOptions="End"
+                StrokeShape="RoundRectangle 24"
+                VerticalOptions="End">
+                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image
+                        HeightRequest="20"
+                        Source="plus.png"
+                        WidthRequest="20" />
+                    <Label
+                        Margin="8,0,0,0"
+                        FontAttributes="Bold"
+                        Text="Sell Item"
+                        TextColor="White" />
+                </HorizontalStackLayout>
+            </Border>
+        </Grid>
+
+        <!--  Bottom Navigation  -->
+        <Grid
+            Grid.Row="5"
+            Background="{StaticResource White}"
+            VerticalOptions="Center">
+            <HorizontalStackLayout
+                Margin="0,5,0,0"
+                Padding="0,0,0,0"
+                HorizontalOptions="Center"
+                Spacing="80"
+                VerticalOptions="Center">
+                <Border
+                    AutomationId="page1"
+                    BackgroundColor="Transparent"
+                    Stroke="Transparent">
+                    <VerticalStackLayout>
+                        <Image Source="inventory.png" class="NavButton" />
+                        <Label StyleClass="Navlabel" Text="Inventory" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+                <Border BackgroundColor="Transparent" Stroke="Transparent">
+                    <VerticalStackLayout>
+                        <Image Source="transaction.png" StyleClass="NavButtonActive" />
+                        <Label StyleClass="NavActiveLabel" Text="Transactions" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border
+                    AutomationId="page2"
+                    BackgroundColor="Transparent"
+                    Stroke="Transparent">
+                    <VerticalStackLayout>
+                        <Image Source="credit.png" class="NavButton" />
+                        <Label StyleClass="Navlabel" Text="On-Tap" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+            </HorizontalStackLayout>
+        </Grid>
+    </Grid>
+</uranium:UraniumContentPage>

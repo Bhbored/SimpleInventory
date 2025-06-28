@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--  Color Palette  -->
+    <Color x:Key="PrimaryGreen">#28B463</Color>
+    <Color x:Key="PrimaryRed">#E74C3C</Color>
+    <Color x:Key="LightGreen">#D5F5E3</Color>
+    <Color x:Key="LightRed">#FADBD8</Color>
+    <Color x:Key="PrimaryText">#1C1C1E</Color>
+    <Color x:Key="SecondaryText">#8E8E93</Color>
+    <Color x:Key="DisabledGray">#E5E5EA</Color>
+    <Color x:Key="BackgroundGray">#F2F2F7</Color>
+    <Color x:Key="White">#FFFFFF</Color>
+
+    <!--  =============== BASE STYLES ===============  -->
+    <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundGray}" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style ApplyToDerivedTypes="True" TargetType="Layout">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <!--  =============== HEADER ===============  -->
+    <Style Class="HeaderContainer" TargetType="Grid">
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+        <Setter Property="Padding" Value="16,10" />
+    </Style>
+
+    <Style Class="HeaderTitle" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="FontFamily" Value="Prime" />
+    </Style>
+
+    <!--  =============== BALANCE CARD ===============  -->
+    <Style Class="BalanceCard" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 15" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryGreen}" />
+        <Setter Property="Padding" Value="24" />
+        <Setter Property="Margin" Value="16,8,16,16" />
+        <Setter Property="Shadow">
+            <Shadow
+                Brush="{StaticResource PrimaryGreen}"
+                Opacity="0.5"
+                Radius="12"
+                Offset="0,10" />
+        </Setter>
+    </Style>
+
+    <Style Class="BalanceTitle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource White}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="Prime" />
+    </Style>
+
+    <Style Class="BalanceAmount" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource White}" />
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Prime" />
+    </Style>
+
+    <!--  =============== CLEAR BUTTON ===============  -->
+    <Style Class="ClearButton" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+        <Setter Property="Padding" Value="16,10" />
+    </Style>
+
+    <Style Class="ClearButtonLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PrimaryGreen}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Prime" />
+    </Style>
+
+    <!--  =============== FILTER CHIPS ===============  -->
+    <Style Class="FilterChipContainer" TargetType="HorizontalStackLayout">
+        <Setter Property="Margin" Value="16,5,16,5" />
+        <Setter Property="Spacing" Value="8" />
+    </Style>
+
+    <Style Class="FilterChip" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 18" />
+        <Setter Property="BackgroundColor" Value="{StaticResource DisabledGray}" />
+        <Setter Property="Padding" Value="16,8" />
+    </Style>
+
+    <Style
+        BasedOn="{StaticResource FilterChip}"
+        Class="FilterChipActive"
+        TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryGreen}" />
+    </Style>
+
+    <Style Class="FilterChipLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="Prime" />
+        <Setter Property="TextColor" Value="{StaticResource PrimaryText}" />
+    </Style>
+
+    <Style
+        BasedOn="{StaticResource FilterChipLabel}"
+        Class="FilterChipLabelActive"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource White}" />
+    </Style>
+
+    <!--  =============== TRANSACTION ITEM ===============  -->
+    <Style Class="TransactionItem" TargetType="Grid">
+        <Setter Property="ColumnDefinitions" Value="44, *, Auto" />
+        <Setter Property="Padding" Value="0,12" />
+    </Style>
+
+    <Style Class="TransactionIcon" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 22" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="WidthRequest" Value="44" />
+    </Style>
+
+    <Style Class="TransactionTitle" TargetType="Label">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Prime" />
+    </Style>
+
+    <Style Class="TransactionTime" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource SecondaryText}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="Prime" />
+    </Style>
+
+    <Style Class="TransactionAmount" TargetType="Label">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Prime" />
+    </Style>
+
+    <Style Class="SearchBarWrapper" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="Margin" Value="16,0,16,0" />
+        <Setter Property="Shadow">
+            <Shadow
+                Brush="Black"
+                Opacity="0.08"
+                Radius="8"
+                Offset="0,2" />
+        </Setter>
+    </Style>
+    <!--  =============== ButtonNav ===============  -->
+
+    <Style Class="NavButtonActive" TargetType="Image">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="WidthRequest" Value="30" />
+    </Style>
+    <Style
+        BasedOn="{StaticResource NavButtonActive}"
+        Class="NavButton"
+        TargetType="Image">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+
+    <Style Class="Navlabel" TargetType="Label">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="Prime" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{StaticResource PrimaryText}" />
+    </Style>
+
+    <Style
+        BasedOn="{StaticResource Navlabel}"
+        Class="NavActiveLabel"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PrimaryGreen}" />
+        <Setter Property="FontFamily" Value="Prime" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+</ResourceDictionary>
